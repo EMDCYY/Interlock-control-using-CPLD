@@ -12,11 +12,13 @@ entity interlock is
 end interlock;
  
 architecture Behavioral of interlock is
+
 	constant b0		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0000";
 	constant b1		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0001";
 	constant b2		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0010";
 	constant b3		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0100";
 	constant b4		:	STD_LOGIC_VECTOR(3 downto 0) :=	"1000";
+	
 	signal start1	:	STD_LOGIC	:=	'0'; 
 	signal last_1	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
 	signal start2	:	STD_LOGIC	:=	'0'; 
@@ -33,35 +35,51 @@ architecture Behavioral of interlock is
 	signal last_7	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
 	signal start8	:	STD_LOGIC	:=	'0'; 
 	signal last_8	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	
+	
 
+	function func_interlock
+		(
+			dn:in STD_LOGIC_VECTOR(3 downto 0);
+			signal last: STD_LOGIC_VECTOR(3 downto 0)
+		) 
+			return STD_LOGIC_VECTOR is
+			variable priority : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+		begin			
+			case last is
+				when b0 => priority := "1111";
+				when others => priority := "0000";
+			end case;
+			case dn is
+				when b0 => return b0;
+				when b1 => return b1;
+				when b2 => return b2;
+				when b3 => return b3;
+				when b4 => return b4;
+				when others => return b1 and priority + last;
+			end case;
+	end func_interlock;
+	
+	
 begin
 
 --Group 1
 process(clk)
 	begin
 		if(clk'event and clk='1') then
-			if (start1 = '0' and last_1 = b0) then
-				case d1 is
-					when b0 => last_1 <= b0;
-					when b1 => last_1 <= b1;
-					when b2 => last_1 <= b2;
-					when b3 => last_1 <= b3;
-					when b4 => last_1 <= b4;
-					when others => last_1 <= b1;
-				end case;
-				s1	<= last_1;
-			else			
-				case d1 is
-					when b0 => last_1 <= b0;
-					when b1 => last_1 <= b1;
-					when b2 => last_1 <= b2;
-					when b3 => last_1 <= b3;
-					when b4 => last_1 <= b4;
-					when others => last_1 <= last_1;
-				end case;
-				s1	<= last_1;
-				start1 <= '1';
-			end if;				
+			case last_1 is
+				when b0 => priority <= "1111";
+				when others => priority <= "0000";
+			end case;
+			case d1 is
+				when b0 => last_1 <= b0;
+				when b1 => last_1 <= b1;
+				when b2 => last_1 <= b2;
+				when b3 => last_1 <= b3;
+				when b4 => last_1 <= b4;
+				when others => last_1 <= b1 and priority + last_1;
+			end case;
+			s1	<= last_1;				
 		end if;
 end process;
 	
