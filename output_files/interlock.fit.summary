@@ -1,0 +1,11 @@
+Fitter Status : Successful - Sat May 12 17:19:56 2018
+Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+Revision Name : interlock
+Top-level Entity Name : interlock
+Family : MAX II
+Device : EPM240T100C5
+Timing Models : Final
+Total logic elements : 104 / 240 ( 43 % )
+Total pins : 65 / 80 ( 81 % )
+Total virtual pins : 0
+UFM blocks : 0 / 1 ( 0 % )

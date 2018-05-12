@@ -1,0 +1,149 @@
+Determining the location of the ModelSim executable...
+
+Using: C:\intelFPGA\18.0\modelsim_ase\win32aloem
+
+To specify a ModelSim executable directory, select: Tools -> Options -> EDA Tool Options
+Note: if both ModelSim-Altera and ModelSim executables are available, ModelSim-Altera will be used.
+
+**** Generating the ModelSim Testbench ****
+
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/interlock.vwf" --testbench_file="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.vwf.vht"
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Copyright (C) 2018  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details.
+    Info: Processing started: Sat May 12 17:02:31 2018
+Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source=C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/interlock.vwf --testbench_file=C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.vwf.vht
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+
+Completed successfully. 
+
+**** Generating the functional simulation netlist ****
+
+quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/" interlock -c interlock
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Copyright (C) 2018  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and its AMPP partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details.
+    Info: Processing started: Sat May 12 17:02:32 2018
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/ interlock -c interlock
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (204019): Generated file interlock.vho in folder "C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim//" for EDA simulation tool
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 501 megabytes
+    Info: Processing ended: Sat May 12 17:02:32 2018
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:01
+
+Completed successfully. 
+
+**** Generating the ModelSim .do script ****
+
+C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.do generated.
+
+Completed successfully. 
+
+**** Running the ModelSim simulation ****
+
+C:/intelFPGA/18.0/modelsim_ase/win32aloem/vsim -c -do interlock.do
+
+Reading C:/intelFPGA/18.0/modelsim_ase/tcl/vsim/pref.tcl
+
+# 10.5b
+
+# do interlock.do
+# ** Warning: (vlib-34) Library already exists at "work".
+
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:02:33 on May 12,2018
+# vcom -work work interlock.vho 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VITAL_Primitives
+# -- Loading package maxii_atom_pack
+# -- Loading package maxii_components
+# -- Compiling entity interlock
+# -- Compiling architecture structure of interlock
+
+# End time: 17:02:33 on May 12,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:02:33 on May 12,2018
+# vcom -work work interlock.vwf.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity interlock_vhd_vec_tst
+
+# -- Compiling architecture interlock_arch of interlock_vhd_vec_tst
+# End time: 17:02:33 on May 12,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+
+# vsim -novopt -c -t 1ps -L maxii -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.interlock_vhd_vec_tst 
+# Start time: 17:02:33 on May 12,2018
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.interlock_vhd_vec_tst(interlock_arch)
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading maxii.maxii_atom_pack(body)
+# Loading maxii.maxii_components
+# Loading work.interlock(structure)
+# Loading ieee.std_logic_arith(body)
+# Loading maxii.maxii_io(behave)
+# Loading maxii.maxii_lcell(vital_le_atom)
+# Loading maxii.maxii_asynch_lcell(vital_le)
+# Loading maxii.maxii_lcell_register(vital_le_reg)
+# ** Warning: Design size of 17063 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# after#31
+
+# End time: 17:02:34 on May 12,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+
+Completed successfully. 
+
+**** Converting ModelSim VCD to vector waveform ****
+
+Reading C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/interlock.vwf...
+
+Reading C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.msim.vcd...
+
+Processing channel transitions... 
+
+Writing the resulting VWF to C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock_20180512170234.sim.vwf
+
+Finished VCD to VWF conversion.
+
+Completed successfully. 
+
+All completed.

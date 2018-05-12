@@ -1,0 +1,57 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/modelsim
+Einterlock
+Z1 w1526157756
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx5 maxii 15 maxii_atom_pack 0 22 UddCE4:[ZTgdUbg3[6]jY1
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx5 maxii 16 maxii_components 0 22 ;h@c4g`FNB<kFf5CF1khW3
+Z6 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z7 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z8 8interlock.vho
+Z9 Finterlock.vho
+l0
+L34
+VKD;dRMQc9?n[m>CWKZzG11
+!s100 R_11dk@@P@^D0>jMSLW@V2
+Z10 OV;C;10.5b;63
+31
+Z11 !s110 1526157817
+!i10b 1
+Z12 !s108 1526157817.000000
+Z13 !s90 -reportprogress|300|-93|-work|work|interlock.vho|
+Z14 !s107 interlock.vho|
+!i113 1
+Z15 o-93 -work work
+Z16 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 9 interlock 0 22 KD;dRMQc9?n[m>CWKZzG11
+l208
+L59
+V10KaW7XbfVLobCP7f?P^B2
+!s100 ]PUQ?<B4L71?eH`He1=Dn2
+R10
+31
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
