@@ -17,26 +17,16 @@ architecture Behavioral of interlock is
 	constant b1		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0001";
 	constant b2		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0010";
 	constant b3		:	STD_LOGIC_VECTOR(3 downto 0) :=	"0100";
-	constant b4		:	STD_LOGIC_VECTOR(3 downto 0) :=	"1000";
-	
-	signal start1	:	STD_LOGIC	:=	'0'; 
-	signal last_1	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start2	:	STD_LOGIC	:=	'0'; 
-	signal last_2	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start3	:	STD_LOGIC	:=	'0'; 
-	signal last_3	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start4	:	STD_LOGIC	:=	'0'; 
-	signal last_4	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start5	:	STD_LOGIC	:=	'0'; 
-	signal last_5	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start6	:	STD_LOGIC	:=	'0'; 
-	signal last_6	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start7	:	STD_LOGIC	:=	'0'; 
-	signal last_7	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	signal start8	:	STD_LOGIC	:=	'0'; 
-	signal last_8	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-	
-	
+	constant b4		:	STD_LOGIC_VECTOR(3 downto 0) :=	"1000";	
+
+	signal last_s1	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s2	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s3	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s4	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s5	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s6	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s7	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
+	signal last_s8	:	STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
 
 	function func_interlock
 		(
@@ -60,230 +50,20 @@ architecture Behavioral of interlock is
 			end case;
 	end func_interlock;
 	
-	
 begin
 
---Group 1
 process(clk)
 	begin
 		if(clk'event and clk='1') then
-			case last_1 is
-				when b0 => priority <= "1111";
-				when others => priority <= "0000";
-			end case;
-			case d1 is
-				when b0 => last_1 <= b0;
-				when b1 => last_1 <= b1;
-				when b2 => last_1 <= b2;
-				when b3 => last_1 <= b3;
-				when b4 => last_1 <= b4;
-				when others => last_1 <= b1 and priority + last_1;
-			end case;
-			s1	<= last_1;				
+			last_s1 <= func_interlock(d1, last_s1);  s1<= last_s1 and "1111";
+			last_s2 <= func_interlock(d2, last_s2);  s2<= last_s2 and "1111";
+			last_s3 <= func_interlock(d3, last_s3);  s3<= last_s3 and "1111";
+			last_s4 <= func_interlock(d4, last_s4);  s4<= last_s4 and "1111";
+			last_s5 <= func_interlock(d5, last_s5);  s5<= last_s5 and "1111";
+			last_s6 <= func_interlock(d6, last_s6);  s6<= last_s6 and "1111";
+			last_s7 <= func_interlock(d7, last_s7);  s7<= last_s7 and "1111";
+			last_s8 <= func_interlock(d8, last_s8);  s8<= last_s8 and "1111";
 		end if;
 end process;
 	
---Group 2
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start2 = '0' and last_2 = b0) then
-				case d2 is
-					when b0 => last_2 <= b0;
-					when b1 => last_2 <= b1;
-					when b2 => last_2 <= b2;
-					when b3 => last_2 <= b3;
-					when b4 => last_2 <= b4;
-					when others => last_2 <= b1;
-				end case;
-				s2	<= last_2;
-			else			
-				case d2 is
-					when b0 => last_2 <= b0;
-					when b1 => last_2 <= b1;
-					when b2 => last_2 <= b2;
-					when b3 => last_2 <= b3;
-					when b4 => last_2 <= b4;
-					when others => last_2 <= last_2;
-				end case;
-				s2	<= last_2;
-				start2 <= '1';
-			end if;				
-		end if;
-end process;
-
---Group 3	
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start3 = '0' and last_3 = b0) then
-				case d3 is
-					when b0 => last_3 <= b0;
-					when b1 => last_3 <= b1;
-					when b2 => last_3 <= b2;
-					when b3 => last_3 <= b3;
-					when b4 => last_3 <= b4;
-					when others => last_3 <= b1;
-				end case;
-				s3	<= last_3;
-			else			
-				case d3 is
-					when b0 => last_3 <= b0;
-					when b1 => last_3 <= b1;
-					when b2 => last_3 <= b2;
-					when b3 => last_3 <= b3;
-					when b4 => last_3 <= b4;
-					when others => last_3 <= last_3;
-				end case;
-				s3	<= last_3;
-				start3 <= '1';
-			end if;				
-		end if;
-end process;
-	
---Group 4
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start4 = '0' and last_4 = b0) then
-				case d4 is
-					when b0 => last_4 <= b0;
-					when b1 => last_4 <= b1;
-					when b2 => last_4 <= b2;
-					when b3 => last_4 <= b3;
-					when b4 => last_4 <= b4;
-					when others => last_4 <= b1;
-				end case;
-				s4	<= last_4;
-			else			
-				case d4 is
-					when b0 => last_4 <= b0;
-					when b1 => last_4 <= b1;
-					when b2 => last_4 <= b2;
-					when b3 => last_4 <= b3;
-					when b4 => last_4 <= b4;
-					when others => last_4 <= last_4;
-				end case;
-				s4	<= last_4;
-				start4 <= '1';
-			end if;				
-		end if;
-end process;
-
---Group 5	
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start5 = '0' and last_5 = b0) then
-				case d5 is
-					when b0 => last_5 <= b0;
-					when b1 => last_5 <= b1;
-					when b2 => last_5 <= b2;
-					when b3 => last_5 <= b3;
-					when b4 => last_5 <= b4;
-					when others => last_5 <= b1;
-				end case;
-				s5	<= last_5;
-			else			
-				case d5 is
-					when b0 => last_5 <= b0;
-					when b1 => last_5 <= b1;
-					when b2 => last_5 <= b2;
-					when b3 => last_5 <= b3;
-					when b4 => last_5 <= b4;
-					when others => last_5 <= last_5;
-				end case;
-				s5	<= last_5;
-				start5 <= '1';
-			end if;				
-		end if;
-end process;
-
---Group 6	
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start6 = '0' and last_6 = b0) then
-				case d6 is
-					when b0 => last_6 <= b0;
-					when b1 => last_6 <= b1;
-					when b2 => last_6 <= b2;
-					when b3 => last_6 <= b3;
-					when b4 => last_6 <= b4;
-					when others => last_6 <= b1;
-				end case;
-				s6	<= last_6;
-			else			
-				case d6 is
-					when b0 => last_6 <= b0;
-					when b1 => last_6 <= b1;
-					when b2 => last_6 <= b2;
-					when b3 => last_6 <= b3;
-					when b4 => last_6 <= b4;
-					when others => last_6 <= last_6;
-				end case;
-				s6	<= last_6;
-				start6 <= '1';
-			end if;				
-		end if;
-end process;
-
---Group 7	
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start7 = '0' and last_7 = b0) then
-				case d1 is
-					when b0 => last_7 <= b0;
-					when b1 => last_7 <= b1;
-					when b2 => last_7 <= b2;
-					when b3 => last_7 <= b3;
-					when b4 => last_7 <= b4;
-					when others => last_7 <= b1;
-				end case;
-				s7	<= last_7;
-			else			
-				case d1 is
-					when b0 => last_7 <= b0;
-					when b1 => last_7 <= b1;
-					when b2 => last_7 <= b2;
-					when b3 => last_7 <= b3;
-					when b4 => last_7 <= b4;
-					when others => last_7 <= last_7;
-				end case;
-				s7	<= last_7;
-				start7 <= '1';
-			end if;				
-		end if;
-end process;
-
---Group 8	
-process(clk)
-	begin
-		if(clk'event and clk='1') then
-			if (start8 = '0' and last_8 = b0) then
-				case d8 is
-					when b0 => last_8 <= b0;
-					when b1 => last_8 <= b1;
-					when b2 => last_8 <= b2;
-					when b3 => last_8 <= b3;
-					when b4 => last_8 <= b4;
-					when others => last_8 <= b1;
-				end case;
-				s8	<= last_8;
-			else			
-				case d8 is
-					when b0 => last_8 <= b0;
-					when b1 => last_8 <= b1;
-					when b2 => last_8 <= b2;
-					when b3 => last_8 <= b3;
-					when b4 => last_8 <= b4;
-					when others => last_8 <= last_8;
-				end case;
-				s8	<= last_8;
-				start8 <= '1';
-			end if;				
-		end if;
-end process;
- 
 end Behavioral;
