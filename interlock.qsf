@@ -1,0 +1,124 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+# Date created = 10:50:31  May 12, 2018
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		interlock_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE EPM240T100C5
+set_global_assignment -name TOP_LEVEL_ENTITY interlock
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:50:31  MAY 12, 2018"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
+set_global_assignment -name VECTOR_WAVEFORM_FILE interlock.vwf
+set_global_assignment -name VHDL_FILE interlock.vhd
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 100
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 5
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
+set_location_assignment PIN_12 -to clk
+set_location_assignment PIN_36 -to d1[3]
+set_location_assignment PIN_26 -to d1[2]
+set_location_assignment PIN_14 -to d1[1]
+set_location_assignment PIN_1 -to d1[0]
+set_location_assignment PIN_2 -to d2[0]
+set_location_assignment PIN_15 -to d2[1]
+set_location_assignment PIN_27 -to d2[2]
+set_location_assignment PIN_37 -to d2[3]
+set_location_assignment PIN_3 -to d3[0]
+set_location_assignment PIN_16 -to d3[1]
+set_location_assignment PIN_28 -to d3[2]
+set_location_assignment PIN_38 -to d3[3]
+set_location_assignment PIN_4 -to d4[0]
+set_location_assignment PIN_17 -to d4[1]
+set_location_assignment PIN_29 -to d4[2]
+set_location_assignment PIN_39 -to d4[3]
+set_location_assignment PIN_5 -to d5[0]
+set_location_assignment PIN_18 -to d5[1]
+set_location_assignment PIN_30 -to d5[2]
+set_location_assignment PIN_40 -to d5[3]
+set_location_assignment PIN_6 -to d6[0]
+set_location_assignment PIN_19 -to d6[1]
+set_location_assignment PIN_33 -to d6[2]
+set_location_assignment PIN_41 -to d6[3]
+set_location_assignment PIN_7 -to d7[0]
+set_location_assignment PIN_20 -to d7[1]
+set_location_assignment PIN_34 -to d7[2]
+set_location_assignment PIN_42 -to d7[3]
+set_location_assignment PIN_8 -to d8[0]
+set_location_assignment PIN_21 -to d8[1]
+set_location_assignment PIN_35 -to d8[2]
+set_location_assignment PIN_43 -to d8[3]
+set_location_assignment PIN_73 -to s1[0]
+set_location_assignment PIN_72 -to s2[0]
+set_location_assignment PIN_71 -to s3[0]
+set_location_assignment PIN_70 -to s4[0]
+set_location_assignment PIN_69 -to s5[0]
+set_location_assignment PIN_68 -to s6[0]
+set_location_assignment PIN_67 -to s7[0]
+set_location_assignment PIN_66 -to s8[0]
+set_location_assignment PIN_58 -to s1[1]
+set_location_assignment PIN_57 -to s2[1]
+set_location_assignment PIN_56 -to s3[1]
+set_location_assignment PIN_55 -to s4[1]
+set_location_assignment PIN_54 -to s5[1]
+set_location_assignment PIN_53 -to s6[1]
+set_location_assignment PIN_52 -to s7[1]
+set_location_assignment PIN_51 -to s8[1]
+set_location_assignment PIN_100 -to s1[2]
+set_location_assignment PIN_99 -to s2[2]
+set_location_assignment PIN_98 -to s3[2]
+set_location_assignment PIN_97 -to s4[2]
+set_location_assignment PIN_96 -to s5[2]
+set_location_assignment PIN_95 -to s6[2]
+set_location_assignment PIN_92 -to s7[2]
+set_location_assignment PIN_91 -to s8[2]
+set_location_assignment PIN_88 -to s1[3]
+set_location_assignment PIN_87 -to s2[3]
+set_location_assignment PIN_86 -to s3[3]
+set_location_assignment PIN_85 -to s4[3]
+set_location_assignment PIN_84 -to s5[3]
+set_location_assignment PIN_83 -to s6[3]
+set_location_assignment PIN_82 -to s7[3]
+set_location_assignment PIN_81 -to s8[3]
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name SDC_FILE SDC1.sdc

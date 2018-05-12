@@ -1,12 +1,12 @@
 /*<simulation_settings>
-<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/Waveform.vwf" --testbench_file="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/simulation/qsim/Waveform.vwf.vht"</ftestbench_cmd>
-<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/Waveform.vwf" --testbench_file="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/simulation/qsim/Waveform.vwf.vht"</ttestbench_cmd>
-<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/simulation/qsim/" interlock -c interlock</fnetlist_cmd>
-<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="/home/xinliu/intelFPGA_lite/18.0/quartus/bin/simulation/qsim/" interlock -c interlock</tnetlist_cmd>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/interlock.vwf" --testbench_file="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.vwf.vht"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off interlock -c interlock --vector_source="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/interlock.vwf" --testbench_file="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/interlock.vwf.vht"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/" interlock -c interlock</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/ite367/Documents/GitHub/Interlock-control-using-CPLD/simulation/qsim/" interlock -c interlock</tnetlist_cmd>
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vcom -work work interlock.vho
-vcom -work work Waveform.vwf.vht
+vcom -work work interlock.vwf.vht
 vsim -novopt -c -t 1ps -L maxii -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.interlock_vhd_vec_tst
 vcd file -direction interlock.msim.vcd
 vcd add -internal interlock_vhd_vec_tst/*
@@ -21,12 +21,11 @@ after 2500 simTimestamp
 run -all
 quit -f
 
-
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
 vcom -work work interlock.vho
-vcom -work work Waveform.vwf.vht
+vcom -work work interlock.vwf.vht
 vsim -novopt -c -t 1ps -sdfmax interlock_vhd_vec_tst/i1=interlock_vhd.sdo -L maxii -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.interlock_vhd_vec_tst
 vcd file -direction interlock.msim.vcd
 vcd add -internal interlock_vhd_vec_tst/*
@@ -40,7 +39,6 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
-
 
 </modelsim_script_timing>
 <hdl_lang>vhdl</hdl_lang>
@@ -75,8 +73,18 @@ HEADER
 	DATA_DURATION = 500.0;
 	SIMULATION_TIME = 0.0;
 	GRID_PHASE = 0.0;
-	GRID_PERIOD = 20.0;
+	GRID_PERIOD = 10.0;
 	GRID_DUTY_CYCLE = 50;
+}
+
+SIGNAL("clk")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
 }
 
 SIGNAL("d1")
@@ -129,66 +137,6 @@ SIGNAL("d1[0]")
 	PARENT = "d1";
 }
 
-SIGNAL("clk")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-SIGNAL("last_s1")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = BUS;
-	WIDTH = 4;
-	LSB_INDEX = 0;
-	DIRECTION = REGISTERED;
-	PARENT = "";
-}
-
-SIGNAL("last_s1[3]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = REGISTERED;
-	PARENT = "last_s1";
-}
-
-SIGNAL("last_s1[2]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = REGISTERED;
-	PARENT = "last_s1";
-}
-
-SIGNAL("last_s1[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = REGISTERED;
-	PARENT = "last_s1";
-}
-
-SIGNAL("last_s1[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = REGISTERED;
-	PARENT = "last_s1";
-}
-
 SIGNAL("s1")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -239,87 +187,6 @@ SIGNAL("s1[0]")
 	PARENT = "s1";
 }
 
-TRANSITION_LIST("d1[3]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 60.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 40.0;
-		LEVEL 1 FOR 120.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 40.0;
-	}
-}
-
-TRANSITION_LIST("d1[2]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 80.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 40.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 80.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 100.0;
-		LEVEL 1 FOR 40.0;
-	}
-}
-
-TRANSITION_LIST("d1[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 120.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 40.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 80.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 20.0;
-	}
-}
-
-TRANSITION_LIST("d1[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 80.0;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 60.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 20.0;
-		LEVEL 1 FOR 40.0;
-		LEVEL 0 FOR 40.0;
-	}
-}
-
 TRANSITION_LIST("clk")
 {
 	NODE
@@ -334,39 +201,104 @@ TRANSITION_LIST("clk")
 	}
 }
 
-TRANSITION_LIST("last_s1[3]")
+TRANSITION_LIST("d1[3]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL U FOR 500.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 34.0;
+		LEVEL 0 FOR 34.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 51.0;
+		LEVEL 1 FOR 34.0;
+		LEVEL 0 FOR 34.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 34.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 7.0;
 	}
 }
 
-TRANSITION_LIST("last_s1[2]")
+TRANSITION_LIST("d1[2]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL U FOR 500.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 34.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 68.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 34.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 24.0;
 	}
 }
 
-TRANSITION_LIST("last_s1[1]")
+TRANSITION_LIST("d1[1]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL U FOR 500.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 85.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 51.0;
+		LEVEL 1 FOR 34.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 68.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 34.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 7.0;
 	}
 }
 
-TRANSITION_LIST("last_s1[0]")
+TRANSITION_LIST("d1[0]")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL U FOR 500.0;
+		LEVEL 1 FOR 34.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 102.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 17.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 136.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 51.0;
+		LEVEL 0 FOR 17.0;
+		LEVEL 1 FOR 7.0;
 	}
 }
 
@@ -375,7 +307,8 @@ TRANSITION_LIST("s1[3]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL X FOR 500.0;
+		LEVEL X FOR 49.0;
+		LEVEL 0 FOR 451.0;
 	}
 }
 
@@ -384,7 +317,8 @@ TRANSITION_LIST("s1[2]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL X FOR 500.0;
+		LEVEL X FOR 49.0;
+		LEVEL 0 FOR 451.0;
 	}
 }
 
@@ -393,7 +327,8 @@ TRANSITION_LIST("s1[1]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL X FOR 500.0;
+		LEVEL X FOR 49.0;
+		LEVEL 0 FOR 451.0;
 	}
 }
 
@@ -402,7 +337,8 @@ TRANSITION_LIST("s1[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL X FOR 500.0;
+		LEVEL X FOR 49.0;
+		LEVEL 0 FOR 451.0;
 	}
 }
 
@@ -468,7 +404,7 @@ DISPLAY_LINE
 DISPLAY_LINE
 {
 	CHANNEL = "s1";
-	EXPAND_STATUS = COLLAPSED;
+	EXPAND_STATUS = EXPANDED;
 	RADIX = Binary;
 	TREE_INDEX = 6;
 	TREE_LEVEL = 0;
@@ -513,56 +449,6 @@ DISPLAY_LINE
 	TREE_INDEX = 10;
 	TREE_LEVEL = 1;
 	PARENT = 6;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "last_s1";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 11;
-	TREE_LEVEL = 0;
-	CHILDREN = 12, 13, 14, 15;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "last_s1[3]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 12;
-	TREE_LEVEL = 1;
-	PARENT = 11;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "last_s1[2]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 13;
-	TREE_LEVEL = 1;
-	PARENT = 11;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "last_s1[1]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 14;
-	TREE_LEVEL = 1;
-	PARENT = 11;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "last_s1[0]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 15;
-	TREE_LEVEL = 1;
-	PARENT = 11;
 }
 
 TIME_BAR
